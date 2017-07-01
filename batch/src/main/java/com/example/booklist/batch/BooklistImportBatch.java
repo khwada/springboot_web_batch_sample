@@ -16,9 +16,11 @@ import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
 import org.springframework.batch.item.file.mapping.DefaultLineMapper;
 import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.PathResource;
 
 import java.util.Date;
 import java.util.List;
@@ -39,11 +41,14 @@ public class BooklistImportBatch {
     @Autowired
     BookService bookService;
 
+    @Value(("${batch.inputfilepath}"))
+    private String inputfilepath;
+
     @Bean
     public FlatFileItemReader<Book> reader() {
         FlatFileItemReader<Book> reader = new FlatFileItemReader<>();
         reader.setEncoding("UTF-8");
-        reader.setResource(new ClassPathResource("csv/books.csv"));
+        reader.setResource(new PathResource(inputfilepath));
         reader.setLineMapper(new DefaultLineMapper<Book>(){
             {
                 setLineTokenizer(new DelimitedLineTokenizer() {{
