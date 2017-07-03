@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    url: jdbc:mysql://xxxxxxxx.rds.amazonaws.com
+    username: dbuser
+    password: dbpass
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa.hibernate.ddl-auto: validate
