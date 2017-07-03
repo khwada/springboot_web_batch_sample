@@ -32,4 +32,4 @@ SpringBootアプリをAWSで動かすまでのサンプル
 ### アプリ側の接続先設定
 - application-aws.ymlをのDB接続先を更新（web/batch）
 - webサーバを起動
-  + gradlew.bat :web:bootRun -Drun.jvmArguments="-Dspring.profiles.active=aws"
+  + gradlew.bat :web:bootRun -Dspring.profiles.active=aws
