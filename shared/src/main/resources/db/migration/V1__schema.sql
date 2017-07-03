@@ -1,1 +1,1 @@
-create table book (id int primary key auto_increment, title varchar(100), author varchar2(100), registrated_at timestamp);
+create table book (id int primary key auto_increment, title varchar(100), author varchar(100), registrated_at timestamp);

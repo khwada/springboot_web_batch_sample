@@ -34,7 +34,7 @@
                     <td th:text="${book.id}"></td>
                     <td th:text="${book.title}"></td>
                     <td th:text="${book.author}"></td>
-                    <td th:text="${#dates.format(book.registratedAt, 'yyyy/MM/dd HH:mm')}"></td>
+                    <td th:text="${book.registratedAt} ? ${#dates.format(book.registratedAt, 'yyyy/MM/dd HH:mm')}"></td>
                 </tr>
                 </tbody>
             </table>

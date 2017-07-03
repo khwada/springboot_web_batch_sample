@@ -1,6 +1,6 @@
 spring:
-  datasource.url: jdbc:h2:file:../db/db
+  datasource.url: jdbc:h2:file:./db/db
   jpa.hibernate.ddl-auto: validate
 
 batch:
-  inputfilepath: ../input/books.csv
+  inputfilepath: ./input/books.csv
