@@ -72,10 +72,12 @@ SpringBootアプリをAWSで動かすまでのサンプル
   + web/batchそれぞれのディレクトリのbuild/libsにjarが生成される
 - EC2上に配置
   + SCPでbuild成果物およびbatch入力ファイルをアップロード（上記で作成したppkファイルを使用）
-    ├── batch.jar
-    ├── input
-    │   └── books.csv
-    └── web.jar
+```
+├── batch.jar
+├── input
+│   └── books.csv
+└── web.ja
+```
 
 ### EC2でのアプリ起動＆動作確認
 - webアプリの起動（バックグラウンド実行）
