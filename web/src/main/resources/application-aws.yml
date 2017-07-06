@@ -3,4 +3,5 @@ spring:
     url: jdbc:mysql://xxxxxxx.rds.amazonaws.com:3306/dbname
     username: username
     password: password
+    driver-class-name: com.mysql.jdbc.Driver
   jpa.hibernate.ddl-auto: validate
