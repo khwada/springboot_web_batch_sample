@@ -3,6 +3,9 @@ SpringBoot web & batchサンプル
 
 SpringBootアプリをAWSで動かすまでのサンプル
 
+## 前提
+- ローカルにjdk8がインストールされていること
+
 ## ローカル実行
 - DB: 組み込みH2データベース
 - webの動作確認
@@ -76,7 +79,7 @@ SpringBootアプリをAWSで動かすまでのサンプル
 ├── batch.jar
 ├── input
 │   └── books.csv
-└── web.ja
+└── web.jar
 ```
 
 ### EC2でのアプリ起動＆動作確認
@@ -88,3 +91,28 @@ SpringBootアプリをAWSで動かすまでのサンプル
 - batch実行
   + java -jar -Dspring.profiles.active=aws batch.jar
   + ブラウザを更新し、書籍一覧が6件表示されることを確認
+
+## Elastic Beanstalk
+- ここまででAWS上へのアプリのデプロイまでできた
+- とはいえ、EC2のセットアップやアプリケーションデプロイは煩雑（特にスケールアウト等する場合） ⇒ Elastic Beanstalkでデプロイしてみる
+
+### アプリケーションの準備
+- 設定ファイルの作成＆再ビルド
+  + web/src/main/resources/application-aws.ymlをコピーして、application-ebt.ymlを作成
+  + `server.port: 5000` を追記（Beanstalkのnginxがポート番号5000をProxyしてくるため）
+  + gradlew.bat :web:build
+- アップロードするzipファイルを作成
+  + build成果物のweb.jarとweb/Procfileをzip圧縮して固める
+  + Procifileの中身は、profileに上記で作成したapplication-ebt.ymlを指定して起動しているのみ
+```
+web: java -jar -Dspring.profiles.active=ebt web.jar
+```
+
+### デプロイ＆動作確認
+- Elastic Beanstalkの環境を作成
+  + ウェブサーバー環境
+  + 事前定義の設定：Java
+  + 環境タイプ：単一インスタンス（Auto Scalingさせる場合は、ここで負荷分散を選択）
+  + 独自のアップロードで、上記で作成したzipファイルを選択
+- 動作確認
+  + 作成した環境のURLにブラウザでアクセスし、書籍一覧が6件表示されることを確認
