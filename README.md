@@ -21,7 +21,7 @@ SpringBootアプリをAWSで動かすまでのサンプル
   + ※組み込みH2データベースは実行中はファイルロックするため、一度Webを止めてからbatchを実行
 
 ## DBをRDSへ移行
-### RSDの作成
+### RDSの作成
 - パラメータグループを作成
   + mysql5.6
 - 作成したパラメータグループを編集（文字コード指定のため）
@@ -42,7 +42,7 @@ SpringBootアプリをAWSで動かすまでのサンプル
   + MySQL Workbench等で接続を確認
 
 ### アプリ側の接続先設定
-- application-aws.ymlをのDB接続先を更新（web/batch）
+- application-aws.ymlのDB接続先を変更（web/batch）
 - webアプリを起動
   + gradlew.bat :web:bootRun -Dspring.profiles.active=aws
   + ※Spring BootのProfile機能で読み込む設定ファイルを切り替えて、接続先DBをRDSに切替
