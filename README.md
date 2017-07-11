@@ -37,15 +37,18 @@ SpringBootアプリをAWSで動かすまでのサンプル
   + マルチAZ：いいえ
   + ストレージタイプ：マグネティック
   + VPCはデフォルトとする（ネットワークのセキュリティ設定は今回は考慮しない）
+  + データベースの名前：適当に設定（後ほど設定ファイルに記載する）
   + DB パラメータグループ：上記で作成したパラメータグループを指定
 - RDSの接続確認
   + MySQL Workbench等で接続を確認
 
 ### アプリ側の接続先設定
 - application-aws.ymlのDB接続先を変更（web/batch）
+  + web/src/main/resources/application-aws.yml
+  + batch/src/main/resources/application-aws.yml
 - webアプリを起動
   + gradlew.bat :web:bootRun -Dspring.profiles.active=aws
-  + ※Spring BootのProfile機能で読み込む設定ファイルを切り替えて、接続先DBをRDSに切替
+  + ※Spring BootのProfile機能で読み込む設定ファイルを切り替えて、接続先DBをRDSに切替している
   + http://localhost:8080 にアクセスして、書籍一覧が２件表示されることを確認
 - batchを実行
   + gradlew.bat :batch:bootRun -Dspring.profiles.active=aws
