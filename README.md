@@ -1,7 +1,9 @@
 SpringBoot web & batchサンプル
 ====
 
-SpringBootアプリをAWSで動かすまでのサンプル
+SpringBootアプリをAWSで動かすまでのサンプル（書籍一覧アプリ）
+- webアプリは、DBの書籍一覧を表示する
+- batchを実行すると、CSVファイルを取り込んでDBに書籍を登録する
 
 ## 前提
 - ローカルにjdk8がインストールされていること
