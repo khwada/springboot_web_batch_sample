@@ -109,7 +109,7 @@ SpringBootアプリをAWSで動かすまでのサンプル（書籍一覧アプ�
 ### アプリケーションの準備
 - 設定ファイルの作成＆再ビルド
   + web/src/main/resources/application-aws.ymlをコピーして、application-ebt.ymlを作成
-  + `server.port: 5000` を追記（Beanstalkのnginxがポート番号5000をProxyしてくるため）
+  + `server.port: 5000` をファイル末尾に追記（Beanstalkのnginxがポート番号5000をProxyしてくるため）
   + gradlew.bat :web:build
 - アップロードするzipファイルを作成
   + build成果物のweb.jarとweb/Procfileをzip圧縮して固める
