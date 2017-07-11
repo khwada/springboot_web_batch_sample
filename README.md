@@ -62,20 +62,25 @@ SpringBootアプリをAWSで動かすまでのサンプル（書籍一覧アプ�
 - EC2インスタンスを作成
   + Amazon Linux
   + t2.micro
+  + 新しいキーペアの作成で、キーペア（pemファイル）を忘れずにダウンロード
 - PuTTYgenなどでpemファイルからppkファイルを作成しておく
   + 参考： http://www.machiiro.jp/2014/04/18/aws_puttygen/
 - セキュリティグループの設定
   + インバウンドの設定で、ポート8080をオープンしておく
-- RDSのセキュリティグループで、ポート3306に対するソースを任意の場所に変更（本来は望ましくない設定だが、ネットワークのセキュリティ設定は今回は考慮しない）
+- RDSのセキュリティグループで、インバウンドルールを編集して、ポート3306に対するソースを任意の場所に変更（本来は望ましくない設定だが、ネットワークのセキュリティ設定は今回は考慮しない）
 
 ### EC2へのミドルウェアインストール
+- 立ち上げたEC2インスタンスにssh接続
+  + host名は、EC2のpublic dnsを指定
+  + ユーザ名は、"ec2-user"を指定
+  + 秘密鍵は、pemファイルを指定
 - openjdk8をインストール
   + sudo yum -y install java-1.8.0-openjdk-devel
   + sudo alternatives --config java
 
 ### EC2へのデプロイ
 - web/batchそれぞれのモジュールをローカルでbuild
-  + gradlew.bat :web:buil
+  + gradlew.bat :web:build
   + gradlew.bat :batch:build
   + web/batchそれぞれのディレクトリのbuild/libsにjarが生成される
 - EC2上に配置
